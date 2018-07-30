@@ -1,17 +1,29 @@
-def load_inventory():
+def c_inventory():
     inventory = [{
-        'name': 'Camaro 2018',
+        'name': 'Charger 2018',
         'in-stock': 5,
-        'price': 250,
-        'replacement cost': 350
+        'price': 1200,
+        'replacement cost': 650
     }, {
-        'name': 'Apartment',
+        'name': 'Audi r8',
         'in-stock': 3,
-        'price': 360,
-        'replacement cost': 460
+        'price': 14300,
+        'replacement cost': 700
     }, {
-        'name': 'Storage Room',
+        'name': 'Bugatti 2018',
         'in-stock': 4,
-        'price': 150,
-        'replacement cost': 250
+        'price': 15500,
+        'replacement cost': 750
     }]
+
+
+def create_file_string(user_dictionary):
+    ''' {str: int} -> str
+    turns the user_dictionary into a string
+    '''
+    file_string = 'name, hours'
+    for name, hours in user_dictionary.items():
+        file_string += '\n{}, {}'.format(name, hours)
+
+
+return file_string

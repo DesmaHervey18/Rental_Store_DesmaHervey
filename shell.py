@@ -1,18 +1,104 @@
 from disk import *
 # import disk
 from core import *
-from daytime import daytime
+from datetime import datetime
+
 
 def print_inventory(inventory):
     for item in inventory:
         print(inventory)
 
 
-def load_inventory(inventory):
+def which():
+    while True:
+        service = input('\nAre you an [em]employee or a [cu]customer?\n')
+        if service == 'cu':
+            customer()
+        elif service == 'em':
+            employee()
+        else:
+            print('****Invalid Answer, Please Try Again****')
+
+
+def customer():
+    print('\nGreat!')
+    price = c_inventory()
+    customer_service = input('\nWould you like to rent a car or buy one?\n')
+    if customer_service == 'rent':
+        print('I would like to rent a car.')
+        c_inventory()
+        car_type = input('Which car would you like to rent?\n')
+        print(c_inventory)
+        if car_payment == 'Charger 2018':
+            price = 1200
+            Charger_2018()
+        elif car_payment == 'Audi r8':
+            price = 14300
+            audi_r8()
+        elif car_payment == 'Bugatti 2018':
+            price = 15500
+            bugatti_2018()
+        rent_length = input(
+            '\nHow many days would you like to purchase this car?')
+
+
+def car_payment():
+    if customer_service == 'charger_2018':
+        print('Would you like to make a rental payment?')
+        customer_service == 'yes'
+        print('inventory price')
+        payment = input('Would you select your payment type?')
+        if payment == 'A':
+            cash()
+        elif payment == 'B':
+            debit()
+        elif payment == 'C':
+            credit()
+        print('Dont forgive you\'ll have a rental fee if the car is late.')
+        customer_service = input('Ok, I gotcha')
+        print('Thank You and enjoy')
+    else:
+        customer_service == 'No'
+        print('Thank You for shopping, we\'ll try again some other time.')
+    if payment == 'audi r8':
+        print('Would you like to make a rental payment?')
+        payment == 'yes'
+        print('inventory price')
+        payment = input('Would you select your payment type?')
+        if payment == 'A':
+            cash()
+        elif payment == 'B':
+            debit()
+        elif payment == 'C':
+            credit()
+        print('Dont forgive you\'ll have a rental fee if the car is late.')
+        payment = input('Ok, I gotcha')
+        print('Thank You and enjoy')
+    else:
+        payment == 'No'
+        print('Thank You for shopping, we\'ll try again some other time.')
+    if payment == 'bugatti 2018':
+        print('inventory price')
+        payment = input('Would you select your payment type?')
+        if payment == 'A':
+            cash()
+        elif payment == 'B':
+            debit()
+        elif payment == 'C':
+            credit()
+        print('Dont forgive you\'ll have a rental fee if the car is late.')
+        payment = input('Ok, I gotcha')
+        print('Thank You and enjoy')
+    else:
+        payment == 'No'
+        print('Thank You for shopping, we\'ll try again some other time.')
+
+
+def car_inventory(inventory):
     for item in inventory:
         car = inventory[item]
         print(item)
-        print('   rental:', car['rental'])
+        print('   name:', car['name'])
         print('   in-stock:', car['in-stock'])
         print('   price:', car['price'])
         print('   replacement:', car['replacement'])
@@ -29,45 +115,9 @@ def load_inventory(inventory):
             )
 
 
-def which():
-    while True:
-        service = input('\nAre you an [em]ployee or a [cu]stomer?\n')
-        if service_type == 'cu':
-            customer()
-        elif service_type == 'em':
-            employee()
-        else:
-            print('****Invalid Answer, Please Try Again****')
-
-
-def customer():
-    print('\nGreat!')
-    price = load_inventory(inventory)
-    customer_service = input('\nWould you like to rent a car or buy one?\n')
-    if customer_service == 'yes':
-        print('I would like to rent a car.')
-        load_inventory(inventory)
-        car_type = input('Which car would you like to rent?')
-        print(inventory)
-        if car_type == 'Camaro 2018':
-            price = 1200
-            camaro_2018()
-        elif == 'Audi r8':
-            price = 14300
-            audi_r8()
-        elif == 'Bugatti Chiron':
-            price = 15500
-            bugatti_chiron()
-        rent_length = input(
-            '\nHow many days would you like to purchase this car?')
-        
-        return car_type
-        return price
-            
-
 def write_to_transation_log(car_type, time, price):
-    price = load_inventory(inventory)
-    time = daytime.now()
+    price = car_inventory(inventory)
+    time = datetime.now()
     text = '{},{},{}\n'.format(car_type, time, price)
 
     with open('history.txt', 'a') as file:
@@ -90,69 +140,16 @@ def employee():
     #     print('\nPlease provide an valid answer cause your is invalid!\n')
 
 
-def car_payment():
-    if response == 'camaro_2018':
-        print('Would you like to make a rental payment?')
-        choice == 'yes'
-        print('inventory rental cost')
-        payment = input('Would you select your payment type?')
-        if payment == 'A':
-            cash()
-        elif payment == 'B':
-            debit()
-        elif payment == 'C':
-            credit()
-        print('Dont forgive you\'ll have a rental fee if the car is late.')
-        choice = input('Ok, I gotcha')
-        print('Thank You and enjoy')
-    else:
-        choice == 'No'
-        print('Thank You for shopping, we\'ll try again some other time.')
-    if payment == 'audi r8':
-        print('Would you like to make a rental payment?')
-        payment == 'yes'
-        print('inventory rental cost')
-        payment = input('Would you select your payment type?')
-        if payment == 'A':
-            cash()
-        elif payment == 'B':
-            debit()
-        elif payment == 'C':
-            credit()
-        print('Dont forgive you\'ll have a rental fee if the car is late.')
-        payment = input('Ok, I gotcha')
-        print('Thank You and enjoy')
-    else:
-        payment == 'No'
-        print('Thank You for shopping, we\'ll try again some other time.')
-    if payment == 'bugatti chiron':
-        print('inventory rental cost')
-        payment = input('Would you select your payment type?')
-        if payment == 'A':
-            cash()
-        elif payment == 'B':
-            debit()
-        elif payment == 'C':
-            credit()
-        print('Dont forgive you\'ll have a rental fee if the car is late.')
-        payment = input('Ok, I gotcha')
-        print('Thank You and enjoy')
-    else:
-        payment == 'No'
-        print('Thank You for shopping, we\'ll try again some other time.')
-
-
 def main():
-    inventory = open_inventory()
-    print('\n~*~*~ Welcome to Desma\'s Rental Shop ~*~*~\n')
+    inventory = car_inventory(inventory)
+    print_inventory(inventory)
     which()
     customer()
+    car_payment()
+    car_inventory
     employee()
-    rental_payments()
-    camaro_2018()
-    audi_r8()
-    bugatti_chiron()
-    write_to_transation_log(car_type, time, price)
+    write_to_transation_log(car_type, time, price())
+
 
 if __name__ == '__main__':
     main()

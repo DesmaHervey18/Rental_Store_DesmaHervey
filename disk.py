@@ -1,5 +1,5 @@
 def open_inventory():
-    with open('Inventory.txt', 'r') as file:
+    with open('inventory.txt', 'r') as file:
         string = file.read()
     inventory = {}
     lines = string.split('\n')
@@ -7,10 +7,10 @@ def open_inventory():
         if line:
             d = parse_inventory_item(line)
             inventory[d[0]] = {
-                'rent': d[0],
+                'name': d[0],
                 'in-stock': d[1],
                 'price': d[2],
-                'replacement cost': d[3],
+                'replacement_cost': d[3],
             }
 
     return inventory
@@ -21,32 +21,44 @@ def print_inventory(inventory):
         print(item)
 
 
-def desma_inventory():
+def car_inventory():
     with open('inventory.txt') as f:
-        inv = {}
+        inventory = {}
         for line in f:
-            name, price_str, quant_str = line.split(',')
+            name, in_stock, price_str, replacement_cost_str = line.split(',')
             item = {
                 'name': name,
+                'in_stock': int(in_stock_str),
                 'price': int(price_str),
-                'quantity': int(quant_str),
+                'replacement_cost': int(replacement_cost_str),
             }
-            inv[name] = item
-        return inv
+            inventory[name] = item
+        return inventory
 
 
-def choose_car(inventory):
-    for item in inventory:
+# def choose_car(inventory):
+#     for item in inventory:
+#         car = inventory[item]
+#         print(item)
+#         print('   name:', car['name'])
+#         print('   in-stock:', car['in-stock'])
+#         print('   price:', car['price'])
+#         print('   replacement:', car['replacement'])
+
+
+def choice_of_car(inventory):
+    for items in inventory:
         car = inventory[item]
         print(item)
-        print('   rent:', car['rent'])
-        print('   in-stock:', car['in-stock'])
-        print('   price:', car['price'])
+        print('     name:', car_type['name'])
+        print('     in_stock:', car_type['in_stock'])
+        print('     price:', car_type['price'])
+        print('     replacement_cost:', car_type['replacement_cost'])
 
 
 def parse_inventory_item(string):
-    rental, in_stock, price = string.split(',')
-    return [rent, int(in_stock), int(price)]
+    name, in_stock, price, replacement_cost = string.split
+    return [str(name), int(in_stock), int(price)]
 
 
 def save_inventory(inventory):
@@ -54,6 +66,7 @@ def save_inventory(inventory):
         for item in inventory.values():
             f.write('{},{},{}\n'.format(
                 item['name'],
+                item['in_stock'],
                 item['price'],
-                item['quantity'],
+                item['replacement_cost'],
             ))
