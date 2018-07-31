@@ -17,13 +17,13 @@ def c_inventory():
     }]
 
 
-def create_file_string(user_dictionary):
+def create_file_string(c_inventory):
     ''' {str: int} -> str
     turns the user_dictionary into a string
     '''
-    file_string = 'name, hours'
-    for name, hours in user_dictionary.items():
-        file_string += '\n{}, {}'.format(name, hours)
+    file_string = 'name, in_stock, price, replacement'
+    for name, in_stock, price, replacement in user_dictionary.items():
+        file_string += '\n{}, {}, {}, {}'.format(name, in_stock, price,
+                                                 replacement)
 
-
-return file_string
+    return file_string

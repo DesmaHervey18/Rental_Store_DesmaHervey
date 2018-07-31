@@ -1,12 +1,7 @@
 from disk import *
-# import disk
 from core import *
-from datetime import datetime
 
-
-def print_inventory(inventory):
-    for item in inventory:
-        print(inventory)
+# from datetime import datetime
 
 
 def which():
@@ -25,13 +20,11 @@ def customer():
     price = c_inventory()
     customer_service = input('\nWould you like to rent a car or buy one?\n')
     if customer_service == 'rent':
-        print('I would like to rent a car.')
-        c_inventory()
-        car_type = input('Which car would you like to rent?\n')
         print('Charger 2018')
         print('Audi r8')
         print('Bugatti 2018')
-        print(c_inventory)
+        car_type = input('Which car would you like to rent?\n')
+        inventory = car_inventory()
         if customer_service == 'Charger 2018':
             charger_2018()
         elif customer_service == 'Audi r8':
@@ -98,44 +91,21 @@ def car_inventory(inventory):
                 '\nSorry we do not have this in stock please choose another car!\n'
             )
 
-def inventory_string(inventory):
 
-
-
-def write_to_transation_log(car_type, time, price):
-    price = car_inventory(inventory)
-    time = datetime.now()
-    text = '{},{},{}\n'.format(car_type, time, price)
-
-    with open('history.txt', 'a') as file:
-        file.write(text)
-
-
-def employee():
-    print('\nHi!\n')
-    response = input('\nWould you like to view the inventory?\n')
-    if response == 'yes':
-        print(inventory)
-        exit()
-    elif response == 'no':
-        print('\nThAnK YoU,\n')
-        exit()
-    elif response == 'quit':
-        print('\nHave a good day!\n')
-    exit()
-    # else:
-    #     print('\nPlease provide an valid answer cause your is invalid!\n')
+def save_inventory(inventory):
+    with open('inventory.txt', 'w') as f:
+        for item in inventory.values():
+            f.write('{},{},{}\n'.format(
+                item['name'],
+                item['in_stock'],
+                item['price'],
+                item['replacement_cost'],
+            ))
 
 
 def main():
-    inventory = car_inventory(inventory)
-    print_inventory(inventory)
     which()
     customer()
-    car_payment()
-    car_inventory
-    employee()
-    write_to_transation_log(car_type, time, price())
 
 
 if __name__ == '__main__':
