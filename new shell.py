@@ -1,7 +1,7 @@
-from disk import *
-# import disk
 from core import *
-from datetime import datetime
+from disk import *
+
+# from datetime import datetime
 
 
 def welcome():
@@ -21,8 +21,14 @@ def which():
     print('*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*')
 
 
+def parse_inventory_item(string):
+    name, in_stock, price, replacement_cost = string.split
+    return [str(name), int(in_stock), int(price), int(replacement_cost)]
+
+
 def customer():
     print('\nGreat!')
+    inventory = c_inventory()
     price = c_inventory()
     customer_service = input(
         '\nWould you like to rent a car or buy one on today?\n')
@@ -40,6 +46,35 @@ def customer():
             bugatti_2018()
         rent_length = input(
             '\nHow many days would you like to purchase this car?\n')
+        print(
+            'You\'ll have a rental fee in {} days, if late that\'ll be a $200 fee each day it\'s late. '.
+            format(rent_length))
+        exit()
+
+
+def print_inventory(inventory):
+    for item in inventory:
+        print(item)
+
+
+def c_inventory():
+    inventory = [{
+        'name': 'Charger 2018',
+        'in-stock': 5,
+        'price': 1200,
+        'replacement cost': 650
+    }, {
+        'name': 'Audi r8',
+        'in-stock': 3,
+        'price': 14300,
+        'replacement cost': 700
+    }, {
+        'name': 'Bugatti 2018',
+        'in-stock': 4,
+        'price': 15500,
+        'replacement cost': 750
+    }]
+    return inventory
 
 
 def charger_2018():
@@ -91,6 +126,7 @@ def employee():
     print('\nHi!\n')
     response = input('\nWould you like to view the inventory?\n')
     if response == 'yes':
+        inventory = c_inventory()
         print(inventory)
         exit()
     elif response == 'no':
@@ -136,7 +172,10 @@ def save_inventory(inventory):
 def main():
     welcome()
     which()
+    parse_inventory_item(string)
     customer()
+    print_inventory(inventory)
+    c_inventory()
     charger_2018()
     audi_r8()
     bugatti_2018()
