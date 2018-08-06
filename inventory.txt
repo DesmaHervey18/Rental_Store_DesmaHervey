@@ -1,0 +1,6 @@
+Name:, In-Stock:, Price:, Replacement:
+Charger 2018, 5, 1200, 650
+Audi r8, 3, 14300, 700
+Bugatti 2018, 4, 15500, 750
+
+

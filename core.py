@@ -27,3 +27,23 @@ def create_file_string(c_inventory):
                                                  replacement)
 
     return file_string
+
+
+def save_inventory(inventory):
+    with open('inventory.txt', 'w') as f:
+        for item in inventory.values():
+            f.write('{},{},{}\n'.format(
+                item['name'],
+                item['in_stock'],
+                item['price'],
+                item['replacement_cost'],
+            ))
+
+
+def get_vehicleprice():
+    if customer_service == 'CHARGER 2018':
+        price = 1200
+    if customer_service == 'AUDI 2018':
+        price = 14300
+    if customer_service == 'BUGATTI 2018':
+        price = 15500

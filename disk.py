@@ -36,16 +36,6 @@ def car_inventory():
         return inventory
 
 
-# def choose_car(inventory):
-#     for item in inventory:
-#         car = inventory[item]
-#         print(item)
-#         print('   name:', car['name'])
-#         print('   in-stock:', car['in-stock'])
-#         print('   price:', car['price'])
-#         print('   replacement:', car['replacement'])
-
-
 def choice_of_car(inventory):
     for items in inventory:
         car = inventory[item]

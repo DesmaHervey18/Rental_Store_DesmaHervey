@@ -29,31 +29,34 @@ def parse_inventory_item(string):
 
 
 def customer():
-    print('\nGreat!')
-    inventory = c_inventory()
-    price = c_inventory()
-    customer_service = input(
-        '\nWould you like to rent a car or buy one on today?\n')
-    if customer_service == 'rent':
-        print('Charger 2018')
-        print('Audi r8')
-        print('Bugatti 2018')
-        customer_response = input('Which car would you like to rent?\n')
+    while True:
+        print('\nGreat!')
         inventory = c_inventory()
-        if customer_response == 'Charger 2018':
-            charger_2018()
-        elif customer_response == 'Audi r8':
-            audi_r8()
-        elif customer_response == 'Bugatti 2018':
-            bugatti_2018()
-        rent_length = input(
-            '\nHow many days would you like to purchase this car?\n')
-        print(
-            'You\'ll have a rental fee in {} days, if late that\'ll be a $200 fee each day it\'s late. '.
-            format(rent_length))
-
-    write_to_transation_log(customer_response)
-    return customer_response
+        price = c_inventory()
+        customer_service = input(
+            '\nWould you like to rent a car or buy one today?\n')
+        if customer_service == 'rent':
+            print('Charger 2018')
+            print('Audi r8')
+            print('Bugatti 2018')
+            customer_response = input('Which car would you like to rent?\n')
+            inventory = c_inventory()
+            if customer_response == 'Charger 2018':
+                charger_2018()
+            elif customer_response == 'Audi r8':
+                audi_r8()
+            elif customer_response == 'Bugatti 2018':
+                bugatti_2018()
+            print('**Invalid Answer, Please Try Again**')
+            rent_length = input(
+                '\nHow many days would you like to purchase this car?\n')
+            print(
+                'You\'ll have a rental fee in {} days, if late that\'ll be a $200 fee each day it\'s late. '.
+                format(rent_length))
+        else:
+            print('**Invalid Answer, Please Try Again**')
+        write_to_transation_log(customer_response)
+        return customer_response
 
 
 def print_inventory(inventory):
