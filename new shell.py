@@ -1,7 +1,6 @@
 from core import *
 from disk import *
-
-# from datetime import datetime
+from datetime import datetime
 
 
 def welcome():
@@ -11,11 +10,14 @@ def welcome():
 
 def which():
     while True:
-        service = input('\nAre you a [cu]customer or an [em]employee?\n')
+        service = input(
+            '\nAre you a [cu]customer or an [em]employee? or quit!!\n')
         if service == 'cu':
             customer()
-        elif service == 'em':
+        if service == 'em':
             employee()
+        elif service == 'quit':
+            exit()
         else:
             print('**Invalid Answer, Please Try Again**')
     print('*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*')
@@ -36,20 +38,22 @@ def customer():
         print('Charger 2018')
         print('Audi r8')
         print('Bugatti 2018')
-        car_type = input('Which car would you like to rent?\n')
+        customer_response = input('Which car would you like to rent?\n')
         inventory = c_inventory()
-        if customer_service == 'Charger 2018':
+        if customer_response == 'Charger 2018':
             charger_2018()
-        elif customer_service == 'Audi r8':
+        elif customer_response == 'Audi r8':
             audi_r8()
-        elif customer_service == 'Bugatti 2018':
+        elif customer_response == 'Bugatti 2018':
             bugatti_2018()
         rent_length = input(
             '\nHow many days would you like to purchase this car?\n')
         print(
             'You\'ll have a rental fee in {} days, if late that\'ll be a $200 fee each day it\'s late. '.
             format(rent_length))
-        exit()
+
+    write_to_transation_log(customer_response)
+    return customer_response
 
 
 def print_inventory(inventory):
@@ -78,7 +82,7 @@ def c_inventory():
 
 
 def charger_2018():
-    if customer_service == 'Charger_2018':
+    if customer_response == 'CHARGER 2018':
         customer_service = input(
             'Would you like to make a rental payment?\n').upper().strip()
         customer_service == 'YES'
@@ -93,7 +97,7 @@ def charger_2018():
 
 
 def audi_r8():
-    if customer_service == 'Audi_r8':
+    if customer_response == 'AUDI r8':
         customer_service = input(
             'Would you like to make a rental payment?\n').upper().strip()
         customer_service == 'YES'
@@ -108,7 +112,7 @@ def audi_r8():
 
 
 def bugatti_2018():
-    if customer_service == 'Bugatti_2018':
+    if customer_response == 'BUGATTI 2018':
         customer_service = input(
             'Would you like to make a rental payment?\n').upper().strip()
         customer_service == 'YES'
@@ -158,6 +162,14 @@ def car_inventory(inventory):
             )
 
 
+def write_to_transation_log(customer_response):
+    time = datetime.now()
+    text = '{},{}\n'.format(customer_response, time)
+
+    with open('history.txt', 'a') as file:
+        file.write(text)
+
+
 def save_inventory(inventory):
     with open('inventory.txt', 'w') as f:
         for item in inventory.values():
@@ -167,6 +179,7 @@ def save_inventory(inventory):
                 item['price'],
                 item['replacement_cost'],
             ))
+            return history
 
 
 def main():
@@ -182,6 +195,8 @@ def main():
     employee()
     car_inventory(inventory)
     save_inventory(inventory)
+    if service == 'quit':
+        exit()
 
 
 if __name__ == '__main__':
